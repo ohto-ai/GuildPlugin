@@ -2,6 +2,9 @@
 /target/
 **/target/
 
+# Local Maven installation (used by mvnw)
+/.maven/
+
 # Test reports and temporary build artifacts
 **/surefire-reports/
 **/failsafe-reports/
@@ -21,3 +24,5 @@ i18n-missing-keys.txt
 /ImagoCore/
 /Geyser/
 /Geyserapi/
+# Build output directory
+/ohtoai-guild-1.20.6-porting/

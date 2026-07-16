@@ -1,0 +1,63 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd">
+
+  <mirrors>
+    <mirror>
+      <id>aliyun-maven</id>
+      <mirrorOf>central</mirrorOf>
+      <name>Aliyun Maven Central Mirror</name>
+      <url>https://maven.aliyun.com/repository/public</url>
+    </mirror>
+  </mirrors>
+
+  <profiles>
+    <profile>
+      <id>aliyun-repos</id>
+      <repositories>
+        <repository>
+          <id>aliyun-central</id>
+          <url>https://maven.aliyun.com/repository/public</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+        <repository>
+          <id>spigot-repo</id>
+          <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+        <repository>
+          <id>placeholderapi</id>
+          <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+        <repository>
+          <id>jitpack</id>
+          <url>https://jitpack.io</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+        <repository>
+          <id>papermc</id>
+          <url>https://repo.papermc.io/repository/maven-public/</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>aliyun-central</id>
+          <url>https://maven.aliyun.com/repository/public</url>
+          <releases><enabled>true</enabled></releases>
+          <snapshots><enabled>true</enabled></snapshots>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>aliyun-repos</activeProfile>
+  </activeProfiles>
+</settings>
