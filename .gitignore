@@ -1,6 +1,15 @@
 # Maven build output
 /target/
 **/target/
+
+# Local Maven installation (used by mvnw)
+/.maven/
+
+# Test reports and temporary build artifacts
+**/surefire-reports/
+**/failsafe-reports/
+**/test-output/
+
 # IDE / OS metadata
 /.idea/
 *.iml
@@ -28,3 +37,7 @@ i18n-missing-keys.txt
 /temp/
 
 /guild-plugin-refactored/
+/Geyser/
+/Geyserapi/
+# Build output directory
+/ohtoai-guild-1.20.6-porting/
