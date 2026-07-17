@@ -36,7 +36,7 @@ permissions:
     default: op
   guild.create:
     description: Allows creating a guild
-    default: true
+    default: op
   guild.invite:
     description: Allows inviting players to join the guild
     default: true

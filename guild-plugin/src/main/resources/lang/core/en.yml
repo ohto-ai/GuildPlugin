@@ -48,6 +48,7 @@ guild.create.economy-not-available: "&cEconomy system is not available, cannot c
 guild.create.insufficient-funds: "&cInsufficient balance! Creating a guild requires {amount}!"
 guild.create.payment-failed: "&cFailed to deduct creation fee!"
 guild.create.payment-refunded: "&eCreation fee {amount} has been refunded."
+guild.create.op-only: "&cOnly operators (OP) can create guilds!"
 
 # ============ Guild Info ============
 guild.info.not-in-guild: "&cYou are not in any guild!"

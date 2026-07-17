@@ -18,6 +18,9 @@ guild:
   home-teleport-delay: 0
   # No-economy mode: set to true to skip economy checks when no economy plugin (e.g. Vault) is installed
   no-economy-mode: false
+  # OP-only create: when true, only operators (OP) can create guilds
+  # When false, any player with the "guild.create" permission can create guilds
+  op-only-create: true
   # Guild tag color
   tag-color: "&6"
   # Guild name color

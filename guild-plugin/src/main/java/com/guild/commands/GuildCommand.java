@@ -256,7 +256,15 @@ public class GuildCommand implements CommandExecutor, TabCompleter {
             player.sendMessage(ColorUtils.colorize(message));
             return;
         }
-        
+
+        // OP-only创建检查（从配置文件读取，默认仅允许OP创建）
+        boolean opOnlyCreate = plugin.getConfigManager().getMainConfig().getBoolean("guild.op-only-create", true);
+        if (opOnlyCreate && !player.isOp()) {
+            String message = languageManager.getCoreMessage(player, "guild.create.op-only", "&c只有管理员(OP)才能创建公会！");
+            player.sendMessage(ColorUtils.colorize(message));
+            return;
+        }
+
         // 解析参数：名称（必填）、标签（可选）、描述（可选）
         // 支持引号包裹包含空格的内容，Bukkit 自动处理引号分割
         String guildName = args[1].replaceAll("[\"']", "").trim();
