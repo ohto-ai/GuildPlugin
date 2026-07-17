@@ -48,6 +48,7 @@ guild.create.economy-not-available: "&c经济系统不可用，无法创建公�
 guild.create.insufficient-funds: "&c您的余额不足！创建公会需要 {amount} 金币！"
 guild.create.payment-failed: "&c扣除创建费用失败！"
 guild.create.payment-refunded: "&e已退还创建费用 {amount}。"
+guild.create.op-only: "&c只有管理员(OP)才能创建公会！"
 
 # ============ 公会信息 ============
 guild.info.not-in-guild: "&c您不在任何公会中！"
