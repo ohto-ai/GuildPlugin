@@ -22,9 +22,9 @@
 
 | 指令 | 说明 |
 |---|---|
-| `/guild create <名称> [标签] [描述]` | 创建公会。名称 3-20 字符，标签最多 6 字符 |
+| `/guild create <名称> [标签] [描述]` | 创建公会。名称 3-20 字符，标签最多 6 字符。默认所有玩家均可创建；如需限制为仅 OP，可在 config.yml 中设置 `guild.op-only-create: true` |
 | `/guild delete` | 删除自己的公会（需确认） |
-| `/guild leave` | 离开当前公会（会长需先转让或解散） |
+| `/guild leave` | 离开当前公会（会长需先使用 `/guild leader` 转让或解散） |
 
 **示例：**
 ```
@@ -52,6 +52,7 @@
 | `/guild kick <玩家名>` | 踢出公会成员 |
 | `/guild promote <玩家名>` | 提升成员为副会 |
 | `/guild demote <玩家名>` | 降级副会为普通成员 |
+| `/guild leader <玩家名>` | 转让会长职位给该成员（仅会长可用，支持离线成员） |
 | `/guild applications` | 打开入会申请管理 GUI |
 
 ### 1.4 公会领地
@@ -187,6 +188,7 @@
 | `guild.kick` | true | 踢出成员 |
 | `guild.promote` | true | 提升成员为副会 |
 | `guild.demote` | true | 降级副会为成员 |
+| `guild.leader` | true | 转让会长职位（仅会长可用） |
 | `guild.delete` | op | 解散公会 |
 | `guild.sethome` | true | 设置公会传送点 |
 | `guild.home` | true | 传送到公会传送点 |

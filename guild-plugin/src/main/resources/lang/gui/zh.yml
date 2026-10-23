@@ -1173,7 +1173,7 @@ gui:
     title: "&c确认离开公会"
     warning: "&c此操作不可撤销！"
     leave.failed: "&c离开公会失败！"
-    leave.leader-cannot-leave: "&c公会会长不能离开公会！"
+    leave.leader-cannot-leave: "&c公会会长不能离开公会！请先使用 &e/guild leader <玩家> &c转让会长或删除公会。"
     leave.success: "&a您已成功离开公会: {guild}"
     bedrock-title: "&c确认离开公会"
     bedrock-content: "&f公会: &e{guild}\n&f你确定要离开这个公会吗？\n&c此操作不可撤销！"

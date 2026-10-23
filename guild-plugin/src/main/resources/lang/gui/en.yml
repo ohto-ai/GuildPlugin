@@ -1173,7 +1173,7 @@ gui:
     title: "&cConfirm Leave Guild"
     warning: "&cThis action cannot be undone!"
     leave.failed: "&cFailed to leave the guild!"
-    leave.leader-cannot-leave: "&cGuild leader cannot leave the guild!"
+    leave.leader-cannot-leave: "&cGuild leader cannot leave the guild! Use &e/guild leader <player> &cto transfer leadership or delete the guild first."
     leave.success: "&aYou have successfully left the guild: {guild}"
     bedrock-title: "&cConfirm Leave Guild"
     bedrock-content: "&fGuild: &e{guild}\n&fAre you sure you want to leave this guild?\n&cThis action cannot be undone!"

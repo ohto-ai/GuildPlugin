@@ -355,7 +355,17 @@ public class ApplicationManagementGUI implements GUI {
      * 检查是否是申请槽位
      */
     private boolean isApplicationSlot(int slot) {
-        return slot >= 10 && slot <= 44 && slot % 9 != 0 && slot % 9 != 8 && slot != 22;
+        return slot >= 10 && slot <= 44 && slot % 9 != 0 && slot % 9 != 8;
+    }
+
+    /**
+     * 从槽位计算申请列表索引（考虑边框列）
+     */
+    private int slotToApplicationIndex(int slot) {
+        int row = slot / 9;
+        int col = slot % 9;
+        if (row < 1 || row > 4 || col < 1 || col > 7) return -1;
+        return currentPage * APPLICATIONS_PER_PAGE + (row - 1) * 7 + (col - 1);
     }
     
     /**
@@ -432,11 +442,11 @@ public class ApplicationManagementGUI implements GUI {
             }
 
             // 计算申请在列表中的索引
-            int applicationIndex = currentPage * APPLICATIONS_PER_PAGE + (slot - 10);
+            int applicationIndex = slotToApplicationIndex(slot);
             if (applicationIndex >= 0 && applicationIndex < applications.size()) {
                 GuildApplication application = applications.get(applicationIndex);
 
-                // 处理申请
+                // 处理申请（申请人通知由 GuildService.processApplicationAsync 统一处理）
                 plugin.getGuildService().processApplicationAsync(application.getId(), GuildApplication.ApplicationStatus.APPROVED, player.getUniqueId()).thenAccept(success -> {
                     CompatibleScheduler.runTask(plugin, player, () -> {
                         if (success) {
@@ -463,7 +473,7 @@ public class ApplicationManagementGUI implements GUI {
             }
         });
     }
-    
+
     /**
      * 处理拒绝申请
      */
@@ -479,11 +489,11 @@ public class ApplicationManagementGUI implements GUI {
             }
 
             // 计算申请在列表中的索引
-            int applicationIndex = currentPage * APPLICATIONS_PER_PAGE + (slot - 10);
+            int applicationIndex = slotToApplicationIndex(slot);
             if (applicationIndex >= 0 && applicationIndex < applications.size()) {
                 GuildApplication application = applications.get(applicationIndex);
 
-                // 处理申请
+                // 处理申请（申请人通知由 GuildService.processApplicationAsync 统一处理）
                 plugin.getGuildService().processApplicationAsync(application.getId(), GuildApplication.ApplicationStatus.REJECTED, player.getUniqueId()).thenAccept(success -> {
                     CompatibleScheduler.runTask(plugin, player, () -> {
                         if (success) {
@@ -501,7 +511,7 @@ public class ApplicationManagementGUI implements GUI {
             }
         });
     }
-    
+
     // ── 基岩版表单 ──
 
     @Override

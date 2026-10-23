@@ -435,6 +435,12 @@ public class GuildService {
                     return CompletableFuture.completedFuture(false);
                 }
                 
+                // 检查公会是否冻结（保留本地修改的冻结拦截）
+                if (targetGuild.isFrozen()) {
+                    DebugLog.info(logger, "[AddMember-Debug] Guild " + targetGuild.getName() + " is frozen, rejecting " + playerName);
+                    return CompletableFuture.completedFuture(false);
+                }
+                
                 return getGuildMemberCountAsync(guildId).thenCompose(memberCount -> {
                     int effectiveMax = getEffectiveMaxMembers(targetGuild);
                     if (memberCount >= effectiveMax) {

@@ -20,6 +20,7 @@ import com.guild.gui.AdminGuildGUI;
 import com.guild.gui.ConfirmDeleteGuildGUI;
 import com.guild.gui.RelationManagementGUI;
 import com.guild.models.Guild;
+import com.guild.models.GuildMember;
 import com.guild.models.GuildRelation;
 import com.guild.core.language.LanguageManager; // 新增
 import com.guild.core.module.ModuleManager;
@@ -416,10 +417,40 @@ public class GuildAdminCommand implements CommandExecutor, TabCompleter {
                     return;
                 }
 
-                String success = languageManager.getCoreMessage("admin.transfer.success", "&aGuild {guild} leadership has been transferred to {player}!")
-                    .replace("{guild}", guildName)
-                    .replace("{player}", newLeaderName);
-                sendMessage(sender, ColorUtils.colorize(success));
+                if (member.getRole() == GuildMember.Role.LEADER) {
+                    String already = languageManager.getCoreMessage("admin.transfer.already-leader", "&c{player} is already the leader of this guild!")
+                        .replace("{player}", newLeaderName);
+                    sendMessage(sender, ColorUtils.colorize(already));
+                    return;
+                }
+
+                UUID oldLeaderUuid = guild.getLeaderUuid();
+                plugin.getGuildService().transferGuildLeadershipAsync(guild.getId(), newLeader.getUniqueId(), newLeader.getName())
+                    .thenAccept(success -> {
+                        if (success) {
+                            String message = languageManager.getCoreMessage("admin.transfer.success", "&aGuild {guild} leadership has been transferred to {player}!")
+                                .replace("{guild}", guildName)
+                                .replace("{player}", newLeaderName);
+                            sendMessage(sender, ColorUtils.colorize(message));
+
+                            // 通知新会长
+                            String received = languageManager.getCoreMessage("admin.transfer.received", "&aYou are now the leader of guild &e{guild} &a!")
+                                .replace("{guild}", guildName);
+                            newLeader.sendMessage(ColorUtils.colorize(received));
+
+                            // 通知原会长（在线时）
+                            Player oldLeader = Bukkit.getPlayer(oldLeaderUuid);
+                            if (oldLeader != null && !oldLeader.getUniqueId().equals(newLeader.getUniqueId())) {
+                                String demoted = languageManager.getCoreMessage("admin.transfer.demoted", "&eLeadership of your guild {guild} has been transferred to {player}.")
+                                    .replace("{guild}", guildName)
+                                    .replace("{player}", newLeaderName);
+                                oldLeader.sendMessage(ColorUtils.colorize(demoted));
+                            }
+                        } else {
+                            String failed = languageManager.getCoreMessage("admin.transfer.failed", "&cFailed to transfer leadership!");
+                            sendMessage(sender, ColorUtils.colorize(failed));
+                        }
+                    });
             });
         });
     }

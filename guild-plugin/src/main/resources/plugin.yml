@@ -63,6 +63,9 @@ permissions:
   guild.demote:
     description: Allows demoting guild members
     default: true
+  guild.leader:
+    description: Allows transferring guild leadership (leader only)
+    default: true
   guild.delete:
     description: Allows deleting the guild
     default: op

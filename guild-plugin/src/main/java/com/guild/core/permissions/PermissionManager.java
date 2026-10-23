@@ -160,7 +160,7 @@ public class PermissionManager {
     public void reloadFromConfig() {
         FileConfiguration cfg = plugin.getConfigManager().getMainConfig();
         this.defaultPermissions = readRolePermissions(cfg, "permissions.default",
-                new RolePermissions(false, false, false, false, false, false, false));
+                new RolePermissions(true, false, false, false, false, false, false));
         this.memberPermissions = readRolePermissions(cfg, "permissions.member",
                 new RolePermissions(true, false, false, false, false, false, false));
         this.officerPermissions = readRolePermissions(cfg, "permissions.officer",
